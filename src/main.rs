@@ -1,14 +1,11 @@
 fn main() {
-    println!("Hello, world!");
-    let a:u8 = 255;
-    let b = a.saturating_add(255);
-    println!("a = {}", a);
-    println!("b = {}", b);
-    for i in 1..=5 {
-        println!("i = {}", i);
-    }
-    for i in 'a'..='z' {
-        println!("i = {}", i);
-        
-    }
+  // not Copy
+  let item = Some(String::from("item"));
+  match item {
+      // 使用ref引用了Option里的值，所以并没有消耗item
+      Some(ref it) => println!("{it}"),
+      None => unreachable!(),
+  }
+  // item在match后仍可使用
+  println!("{item:?}")
 }
